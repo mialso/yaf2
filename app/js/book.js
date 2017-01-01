@@ -1,12 +1,8 @@
 (function(app) {
 	'use strict'
 	let moduleName = "book"
-	if (!app) {
-		console.log("[ERROR]: <book>: app is not defined, exiting...");
-		return;
-	}
-	if (!app.user) {
-		app.moduleError(moduleName, "no user exists, exiting...")
+	if (!app || !app.model) {
+		console.log("[ERROR]: <book>: app.model is not defined, exiting...");
 		return;
 	}
 
@@ -32,7 +28,7 @@
 				event: {
 					type: "BOOK_MODEL_UPDATE",
 					listener: function(event) {
-						console.log("model.ui.eventListener run")
+						console.log("model.ui.p.eventListener run")
 						this.innerText = event.detail
 					}
 				}
@@ -45,7 +41,7 @@
 				event: {
 					type: "BOOK_MODEL_UPDATE",
 					listener: function(event) {
-						console.log("model.ui.eventListener run")
+						console.log("model.ui.input.eventListener run")
 						this.placeholder = event.detail
 						this.value = null
 					}
@@ -62,8 +58,7 @@
 			}
 		]
 	}
-	// TODO app.mode.book = bookModel
-	app.user.addModel(bookModel)
+	app.model.initModel(bookModel)
 
 	window.setTimeout(function() {
 		bookModel.data = "new Data"

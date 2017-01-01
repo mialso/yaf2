@@ -14,7 +14,7 @@
 		let domEl = document.createElement(modelConfig.type)
 		
 		if (modelConfig.event) {
-			domEl.addEventListener(modelConfig.event.type, modelConfig.event.listener)
+			domEl.addEventListener(modelConfig.event.type, modelConfig.event.listener, true)
 		}
 
 		if (modelConfig.action) {

@@ -13,8 +13,20 @@
 	}
 
 	glob.app = {
-		model: {},
 		moduleError: logModuleError,
 		modelEventCreate: modelEventCreate
 	}
+	glob.onload = function() {
+		console.log("window on load")
+	}
+	glob.document.addEventListener("DOMContentLoaded", function() {
+		console.log("document onDOMContentLoaded")
+		for(let model in glob.app.model) {
+			if (glob.app.model[model] instanceof Function) {
+				return
+			}
+			console.log("passing model "+model)
+			glob.app.user.addModel(glob.app.model[model])
+		}
+	})
 })(window);
